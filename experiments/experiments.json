@@ -167,5 +167,16 @@
     "artifacts": [
       "outputs/partnership_deck.md"
     ]
+  },
+  {
+    "id": "exp_014",
+    "name": "Company Pitch Deck",
+    "type": "company",
+    "status": "proposed",
+    "score": 0.0,
+    "created_at": "2026-03-29T07:43:47.082551",
+    "completed_at": "",
+    "notes": "",
+    "artifacts": []
   }
 ]
