@@ -848,6 +848,7 @@
         <ul>
             <li><a href="#pipeline">Pipeline</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#agents">Agents</a></li>
             <li><a href="#platform">Platform</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#timeline">Milestones</a></li>
@@ -1098,6 +1099,82 @@
                     <h4 class="timeline-title">Phase 1 Trial</h4>
                     <p class="timeline-desc">First-in-human clinical trial</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Agent System Section -->
+    <section class="section" id="agents" style="background:linear-gradient(180deg,rgba(0,212,255,0.03) 0%,rgba(255,51,102,0.03) 100%);">
+        <div class="section-header reveal">
+            <span class="section-label">AI Platform</span>
+            <h2 class="section-title">BrownBioTech Agent System</h2>
+            <p class="section-desc">Multi-agent AI platform inspired by SciSpace BioMed + DrugPipe</p>
+        </div>
+
+        <!-- Agent Architecture -->
+        <div style="background:linear-gradient(145deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:50px;margin-bottom:40px;" class="reveal">
+            <h3 style="font-size:1.3rem;margin-bottom:30px;text-align:center;">🤖 Multi-Agent Architecture</h3>
+            
+            <!-- Supervisor -->
+            <div style="text-align:center;margin-bottom:30px;">
+                <div style="display:inline-block;background:linear-gradient(135deg,var(--accent),var(--cyan));padding:15px 30px;border-radius:12px;font-weight:600;">
+                    👤 Supervisor Agent
+                </div>
+            </div>
+            
+            <!-- Agents Grid -->
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;">
+                <div style="background:rgba(255,51,102,0.1);border:1px solid rgba(255,51,102,0.2);border-radius:12px;padding:20px;">
+                    <div style="font-size:2rem;margin-bottom:10px;">📚</div>
+                    <h4 style="font-size:1rem;margin-bottom:8px;">Literature Agent</h4>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">PubMed, patents, target validation</p>
+                </div>
+                <div style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:20px;">
+                    <div style="font-size:2rem;margin-bottom:10px;">🔬</div>
+                    <h4 style="font-size:1rem;margin-bottom:8px;">Multi-Omics Agent</h4>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">RPPA500, TCGA, CCLE, DepMap</p>
+                </div>
+                <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:20px;">
+                    <div style="font-size:2rem;margin-bottom:10px;">💊</div>
+                    <h4 style="font-size:1rem;margin-bottom:8px;">Virtual Screening Agent</h4>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">DrugPipe-style generative + docking</p>
+                </div>
+                <div style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:20px;">
+                    <div style="font-size:2rem;margin-bottom:10px;">🧬</div>
+                    <h4 style="font-size:1rem;margin-bottom:8px;">Design Agent</h4>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">De novo, QSAR, lead optimization</p>
+                </div>
+                <div style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);border-radius:12px;padding:20px;">
+                    <div style="font-size:2rem;margin-bottom:10px;">📊</div>
+                    <h4 style="font-size:1rem;margin-bottom:8px;">ADMET Agent</h4>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Absorption, toxicity, drug-likeness</p>
+                </div>
+                <div style="background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);border-radius:12px;padding:20px;">
+                    <div style="font-size:2rem;margin-bottom:10px;">🧪</div>
+                    <h4 style="font-size:1rem;margin-bottom:8px;">Wet Lab Agent</h4>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">GIST lab coordination & validation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pipeline Flow -->
+        <div style="background:linear-gradient(145deg,rgba(255,255,255,0.03) 0%,rgba(255,255,255,0.01) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;text-align:center;" class="reveal">
+            <h3 style="font-size:1.3rem;margin-bottom:25px;">🔄 Full Pipeline: Literature → IND</h3>
+            <div style="display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;">
+                <div style="padding:12px 20px;background:rgba(255,51,102,0.15);border-radius:8px;font-size:0.9rem;">📚 Literature</div>
+                <div style="color:var(--text-muted);">→</div>
+                <div style="padding:12px 20px;background:rgba(0,212,255,0.15);border-radius:8px;font-size:0.9rem;">🔬 Omics</div>
+                <div style="color:var(--text-muted);">→</div>
+                <div style="padding:12px 20px;background:rgba(168,85,247,0.15);border-radius:8px;font-size:0.9rem;">💊 Virtual Screen</div>
+                <div style="color:var(--text-muted);">→</div>
+                <div style="padding:12px 20px;background:rgba(34,197,94,0.15);border-radius:8px;font-size:0.9rem;">🧬 Design</div>
+                <div style="color:var(--text-muted);">→</div>
+                <div style="padding:12px 20px;background:rgba(249,115,22,0.15);border-radius:8px;font-size:0.9rem;">📊 ADMET</div>
+                <div style="color:var(--text-muted);">→</div>
+                <div style="padding:12px 20px;background:rgba(234,179,8,0.15);border-radius:8px;font-size:0.9rem;">🧪 Wet Lab</div>
+                <div style="color:var(--text-muted);">→</div>
+                <div style="padding:12px 20px;background:rgba(255,51,102,0.3);border-radius:8px;font-size:0.9rem;">📄 IND</div>
             </div>
         </div>
     </section>
