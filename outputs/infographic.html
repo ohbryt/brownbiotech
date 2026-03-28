@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrownBioTech Pipeline Infographic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0a0f;
+            --accent: #ff3366;
+            --cyan: #00d4ff;
+            --purple: #a855f7;
+            --green: #22c55e;
+            --orange: #f97316;
+            --yellow: #eab308;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: white;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .infographic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ─── Title ─── */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+        }
+
+        /* ─── Main Pipeline Flow ─── */
+        .pipeline-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 30px;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .flow-step:last-child::after { display: none; }
+
+        .flow-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .flow-icon::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 23px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .flow-step:nth-child(2) .flow-icon::before { background: linear-gradient(135deg, var(--cyan), var(--purple)); }
+        .flow-step:nth-child(3) .flow-icon::before { background: linear-gradient(135deg, var(--purple), var(--green)); }
+        .flow-step:nth-child(4) .flow-icon::before { background: linear-gradient(135deg, var(--green), var(--orange)); }
+        .flow-step:nth-child(5) .flow-icon::before { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
+        .flow-step:nth-child(6) .flow-icon::before { background: linear-gradient(135deg, var(--yellow), var(--accent)); }
+
+        .flow-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .flow-desc {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ─── Three Pillars ─── */
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .pillars { grid-template-columns: 1fr; }
+            .pipeline-flow { flex-direction: column; }
+            .flow-step::after { display: none; }
+        }
+
+        .pillar {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,51,102,0.3);
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .pillar:nth-child(1) .pillar-icon { background: linear-gradient(135deg, rgba(255,51,102,0.2), rgba(255,51,102,0.1)); }
+        .pillar:nth-child(2) .pillar-icon { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,212,255,0.1)); }
+        .pillar:nth-child(3) .pillar-icon { background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(168,85,247,0.1)); }
+
+        .pillar h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pillar p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+        }
+
+        .pillar-features {
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .pillar-features li {
+            list-style: none;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pillar-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* ─── Nano Banana Flow ─── */
+        .nanobanana-section {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+
+        .nanobanana-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .nanobanana-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .nanobanana-title p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        .loop-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .loop-box {
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .loop-box.ai {
+            background: linear-gradient(135deg, rgba(255,51,102,0.15) 0%, rgba(255,51,102,0.05) 100%);
+            border: 1px solid rgba(255,51,102,0.3);
+        }
+
+        .loop-box.lab {
+            background: linear-gradient(135deg, rgba(0,212,255,0.15) 0%, rgba(0,212,255,0.05) 100%);
+            border: 1px solid rgba(0,212,255,0.3);
+        }
+
+        .loop-box.data {
+            background: linear-gradient(135deg, rgba(168,85,247,0.15) 0%, rgba(168,85,247,0.05) 100%);
+            border: 1px solid rgba(168,85,247,0.3);
+        }
+
+        .loop-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .loop-label {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .loop-desc {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .loop-arrow {
+            font-size: 2rem;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* ─── Stats Grid ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .stat-box {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ─── Pricing Cards ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+
+        .pricing-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(255,51,102,0.2);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .pricing-tier {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .pricing-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+        }
+
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .pricing-amount span {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.5;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-top: 25px;
+            font-size: 0.85rem;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--green);
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic-container">
+
+        <!-- Title -->
+        <div class="section-title">
+            <h2>AI-Powered Cancer Metabolism Platform</h2>
+            <p>From target discovery to wet validation — fully automated</p>
+        </div>
+
+        <!-- Pipeline Flow -->
+        <div class="pipeline-flow">
+            <div class="flow-step">
+                <div class="flow-icon">🔬</div>
+                <div class="flow-label">Multi-Omics</div>
+                <div class="flow-desc">TCGA, CCLE, RPPA500</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-icon">🧠</div>
+                <div class="flow-label">AI Analysis</div>
+                <div class="flow-desc">Metabolism pathways</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-icon">🎯</div>
+                <div class="flow-label">Target Ranking</div>
+                <div class="flow-desc">CRISPR, survival</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-icon">💊</div>
+                <div class="flow-label">Molecular Design</div>
+                <div class="flow-desc">Generative AI</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-icon">🧪</div>
+                <div class="flow-label">Wet Validation</div>
+                <div class="flow-desc">GIST lab</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-icon">📄</div>
+                <div class="flow-label">IND Filing</div>
+                <div class="flow-desc">Regulatory</div>
+            </div>
+        </div>
+
+        <!-- Three Pillars -->
+        <div class="pillars">
+            <div class="pillar">
+                <div class="pillar-icon">🎯</div>
+                <h3>Target Discovery</h3>
+                <p>AI-powered mining of cancer metabolism dependencies</p>
+                <ul class="pillar-features">
+                    <li>Multi-omics integration</li>
+                    <li>Survival correlation analysis</li>
+                    <li>CRISPR dependency screening</li>
+                    <li>Drugability assessment</li>
+                    <li>Novel target identification</li>
+                </ul>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">📊</div>
+                <h3>Multi-Omics Analysis</h3>
+                <p>Comprehensive data analysis service</p>
+                <ul class="pillar-features">
+                    <li>RPPA500 proteomics (447 proteins)</li>
+                    <li>TCGA transcriptomics</li>
+                    <li>DepMap CRISPR screens</li>
+                    <li>Custom pathway analysis</li>
+                    <li>Interactive visualizations</li>
+                </ul>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">🧪</div>
+                <h3>Wet Validation</h3>
+                <p>Automated experimental verification</p>
+                <ul class="pillar-features">
+                    <li>siRNA/shRNA knockdown</li>
+                    <li>Compound profiling</li>
+                    <li>Viability & apoptosis assays</li>
+                    <li>Mouse xenograft models</li>
+                    <li>Iterative feedback loop</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Nano Banana Loop -->
+        <div class="nanobanana-section">
+            <div class="nanobanana-title">
+                <h3>🔄 Automated Discovery Loop</h3>
+                <p>Continuous iteration between AI design and experimental validation</p>
+            </div>
+            <div class="loop-container">
+                <div class="loop-box ai">
+                    <div class="loop-icon">🤖</div>
+                    <div class="loop-label">AI Design</div>
+                    <div class="loop-desc">Hypothesis generation</div>
+                </div>
+                <div class="loop-arrow">⟷</div>
+                <div class="loop-box lab">
+                    <div class="loop-icon">🧪</div>
+                    <div class="loop-label">Wet Lab</div>
+                    <div class="loop-desc">Experimental testing</div>
+                </div>
+                <div class="loop-arrow">⟷</div>
+                <div class="loop-box data">
+                    <div class="loop-icon">📈</div>
+                    <div class="loop-label">Data</div>
+                    <div class="loop-desc">Results analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-value">9,000+</div>
+                <div class="stat-label">Cancer Samples Analyzed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">447</div>
+                <div class="stat-label">Protein Markers (RPPA500)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">10x</div>
+                <div class="stat-label">Faster vs Traditional</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">30-50%</div>
+                <div class="stat-label">Lower Cost</div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="section-title">
+            <h2>Service Plans</h2>
+            <p>Flexible options for every stage of drug discovery</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-tier">Bronze</div>
+                <div class="pricing-desc">Single cancer type analysis</div>
+                <div class="pricing-amount">₩500만</div>
+                <ul class="pricing-features">
+                    <li>Standard multi-omics analysis</li>
+                    <li>Pathway enrichment</li>
+                    <li>Survival analysis</li>
+                    <li>3 target candidates</li>
+                    <li>PDF report</li>
+                </ul>
+            </div>
+            <div class="pricing-card popular">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-tier">Silver</div>
+                <div class="pricing-desc">Comprehensive analysis</div>
+                <div class="pricing-amount">₩1,000万</div>
+                <ul class="pricing-features">
+                    <li>Everything in Bronze</li>
+                    <li>RPPA500 proteomics</li>
+                    <li>CRISPR dependency analysis</li>
+                    <li>10 target candidates</li>
+                    <li>Interactive dashboard</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-tier">Gold</div>
+                <div class="pricing-desc">Full platform + validation</div>
+                <div class="pricing-amount">₩2,500万</div>
+                <ul class="pricing-features">
+                    <li>Everything in Silver</li>
+                    <li>3 targets wet validated</li>
+                    <li>siRNA knockdown assays</li>
+                    <li>Compound profiling</li>
+                    <li>Full IP package</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
