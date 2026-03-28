@@ -1,0 +1,54 @@
+[
+  {
+    "id": "exp_001",
+    "name": "Pipeline Naming \u2014 DGAT1/YARS2 Brand",
+    "type": "pipeline",
+    "status": "completed",
+    "score": 40,
+    "created_at": "2026-03-29T07:29:30.696079",
+    "completed_at": "2026-03-29T07:29:35.492547",
+    "notes": "\n# Pipeline Naming Proposal\n\n## Targets\n- DGAT1: Lipid metabolism regulator, validated in mouse NSCLC\n- YARS2: Mitochondrial tyrosyl-tRNA synthetase, in vitro\n\n## Naming Ideas\n\n### Option A: Brown-X Series\n- `BROWN-1` (DGAT1, NSCLC) \u2014 Lead candidate\n- `BROWN-2` (YARS2, NSCLC) \u2014 Backup/investigational\n\n### Option B: Gwangju Series  \n- `GJ-01` (DGAT1)\n- `GJ-02` (YARS2)\n\n### Option C: Mechanism-Based\n- `LIPA-1` (DGAT1 = Lipid Pathway)\n- `MITO-Y1` (YARS2 = Mitochondrial)\n\n### Option D: Oncology-Focused\n- `ONCO-1` (DGAT1)\n- `ONCO-2` (YARS2)\n\n## Recommendation\n`BROWN-1` and `BROWN-2` \u2014 Clean, memorable, brand-building.\n        ",
+    "artifacts": [
+      "outputs/pipeline_naming_exp_001.md"
+    ]
+  },
+  {
+    "id": "exp_002",
+    "name": "Company Pitch Deck",
+    "type": "company",
+    "status": "completed",
+    "score": 40,
+    "created_at": "2026-03-29T07:29:35.528441",
+    "completed_at": "2026-03-29T07:29:35.559891",
+    "notes": "\n# BrownBioTech Company Deck\n\n## Structure\n1. Title: BrownBioTech \u2014 AI-Driven Lung Cancer Therapeutics\n2. Problem: NSCLC treatment gaps, high failure rates\n3. Solution: AI-first drug discovery platform\n4. Pipeline: BROWN-1 (DGAT1), BROWN-2 (YARS2)\n5. Technology: ARP (Autonomous Research Pipeline)\n6. Team: Dr. OCM (GIST), advisors\n7. Traction: Mouse efficacy confirmed, IND filing planned\n8. Ask: Partnership/Investment for IND enabling studies\n        ",
+    "artifacts": [
+      "outputs/brownbiotech_deck_exp_002.md"
+    ]
+  },
+  {
+    "id": "exp_003",
+    "name": "Company Website Landing Page",
+    "type": "website",
+    "status": "completed",
+    "score": 20,
+    "created_at": "2026-03-29T07:29:35.590941",
+    "completed_at": "2026-03-29T07:29:35.621778",
+    "notes": "\n# BrownBioTech Website\n\n## Pages\n- `/` \u2014 Hero, tagline, pipeline visualization\n- `/science` \u2014 Technology platform (ARP)\n- `/pipeline` \u2014 BROWN-1, BROWN-2 details\n- `/team` \u2014 Dr. OCM, collaborators\n- `/publications` \u2014 Paper list\n- `/contact` \u2014 Partnership inquiries\n\n## Tech Stack\nSingle-page HTML with embedded CSS for simplicity.\n        ",
+    "artifacts": [
+      "index.html"
+    ]
+  },
+  {
+    "id": "exp_004",
+    "name": "ARP v3 \u2014 DGAT1 Target Profile",
+    "type": "arp",
+    "status": "completed",
+    "score": 20,
+    "created_at": "2026-03-29T07:29:35.652865",
+    "completed_at": "2026-03-29T07:29:35.683899",
+    "notes": "\n# DGAT1 Target Profile for ARP v3\n\n## Target Info\n- Gene: DGAT1 (Diacylglycerol O-Acyltransferase 1)\n- Function: Key enzyme in triacylglycerol synthesis\n- Role in NSCLC: Lipid metabolism reprogramming in cancer cells\n\n## Literature\n- DGAT1 inhibition shows anti-tumor effects in multiple cancers\n- Knockout mice viable \u2192 acceptable safety profile\n- Existing inhibitors: PF-06424478, PF-0462010\n\n## ARP Integration\nAdd DGAT1 to TARGET_DATABASE with pathway info,\ngenerate novel inhibitor structures using diffusion model.\n        Added DGAT1/YARS2 to ARP target database. ",
+    "artifacts": [
+      "arp_target_update"
+    ]
+  }
+]
