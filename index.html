@@ -4,255 +4,1152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrownBioTech — AI-Driven Lung Cancer Therapeutics</title>
-    <meta name="description" content="BrownBioTech is developing AI-first precision medicines for lung cancer. Lead program BROWN-1 (DGAT1 inhibitor) has demonstrated in vivo efficacy.">
+    <meta name="description" content="BrownBioTech is pioneering AI-first drug discovery for lung cancer. BROWN-1 (DGAT1) has demonstrated in vivo efficacy. IND filing Q3 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a2e;
-            --accent: #e94560;
-            --light: #f8f9fa;
-            --dark: #16213e;
-            --text: #333;
+            --primary: #0a0a0f;
+            --primary-light: #12121a;
+            --accent: #ff3366;
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --accent-dim: #cc2952;
+            --cyan: #00d4ff;
+            --cyan-glow: rgba(0, 212, 255, 0.3);
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.6);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --gradient-1: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            --gradient-2: linear-gradient(180deg, rgba(255,51,102,0.1) 0%, transparent 100%);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; color: var(--text); }
-        
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(26,26,46,0.95); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-        nav .logo { color: white; font-size: 1.5em; font-weight: bold; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95em; transition: color 0.3s; }
-        nav a:hover { color: var(--accent); }
-        
-        /* Hero */
-        .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%); color: white; padding: 160px 40px 100px; text-align: center; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .hero h1 { font-size: 4em; margin-bottom: 10px; letter-spacing: -2px; }
-        .hero .subtitle { font-size: 1.6em; opacity: 0.9; margin-bottom: 30px; font-weight: 300; }
-        .hero .tag { background: var(--accent); padding: 8px 25px; border-radius: 25px; font-size: 0.9em; display: inline-block; margin-bottom: 40px; }
-        .hero .cta-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 15px 35px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: #d63850; transform: translateY(-2px); }
-        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
-        .btn-secondary:hover { border-color: white; }
-        
-        /* Sections */
-        .section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
-        .section h2 { font-size: 2.5em; margin-bottom: 20px; color: var(--primary); text-align: center; }
-        .section .lead { text-align: center; max-width: 700px; margin: 0 auto 60px; font-size: 1.2em; color: #666; }
-        
-        /* Pipeline */
-        .pipeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 40px; }
-        .pipeline-card { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee; position: relative; overflow: hidden; }
-        .pipeline-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); }
-        .pipeline-card.lead::before { background: var(--accent); }
-        .pipeline-card.backup::before { background: #4a90d9; }
-        .pipeline-card .badge { background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8em; display: inline-block; margin-bottom: 20px; }
-        .pipeline-card.backup .badge { background: #4a90d9; }
-        .pipeline-card h3 { font-size: 1.8em; color: var(--primary); margin-bottom: 15px; }
-        .pipeline-card .target { font-family: monospace; background: var(--light); padding: 3px 10px; border-radius: 4px; font-size: 0.9em; }
-        .pipeline-card table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-        .pipeline-card td { padding: 10px 0; border-bottom: 1px solid #eee; }
-        .pipeline-card td:first-child { color: #888; width: 120px; }
-        
-        /* Platform */
-        .platform { background: var(--light); padding: 100px 40px; }
-        .platform-inner { max-width: 1200px; margin: 0 auto; }
-        .platform-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; }
-        .platform-item { background: white; padding: 30px; border-radius: 12px; text-align: center; }
-        .platform-item .icon { font-size: 3em; margin-bottom: 15px; }
-        .platform-item h3 { font-size: 1.2em; margin-bottom: 10px; color: var(--primary); }
-        .platform-item p { font-size: 0.95em; color: #666; }
-        
-        /* Team */
-        .team-card { background: white; border-radius: 16px; padding: 40px; display: flex; gap: 40px; align-items: center; max-width: 800px; margin: 40px auto; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .team-avatar { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--dark)); display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5em; font-weight: bold; flex-shrink: 0; }
-        .team-info h3 { font-size: 1.8em; color: var(--primary); margin-bottom: 5px; }
-        .team-info .title { color: var(--accent); font-weight: 600; margin-bottom: 15px; }
-        .team-info p { color: #666; }
-        .team-stats { display: flex; gap: 40px; margin-top: 20px; }
-        .team-stat { text-align: center; }
-        .team-stat .num { font-size: 2em; font-weight: bold; color: var(--primary); }
-        .team-stat .label { font-size: 0.85em; color: #888; }
-        
-        /* Timeline */
-        .timeline { max-width: 800px; margin: 0 auto; }
-        .timeline-item { display: flex; gap: 30px; padding: 30px 0; border-left: 2px solid #eee; position: relative; }
-        .timeline-item::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); position: absolute; left: -9px; top: 35px; }
-        .timeline-item.done::before { background: #4CAF50; }
-        .timeline-item.future::before { background: #ddd; }
-        .timeline-date { width: 100px; font-weight: bold; color: var(--primary); }
-        .timeline-content h4 { color: var(--primary); margin-bottom: 5px; }
-        .timeline-content p { color: #666; font-size: 0.95em; }
-        
-        /* Footer */
-        footer { background: var(--primary); color: white; padding: 60px 40px; text-align: center; }
-        footer .contact { font-size: 1.3em; margin-bottom: 20px; }
-        footer a { color: var(--accent); }
-        footer p { opacity: 0.7; font-size: 0.9em; }
-        
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── Animated Background ─── */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(255,51,102,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,51,102,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: 0;
+            animation: floatGlow 10s ease-in-out infinite;
+        }
+
+        .bg-glow-1 {
+            background: var(--accent-glow);
+            top: -200px;
+            right: -200px;
+        }
+
+        .bg-glow-2 {
+            background: var(--cyan-glow);
+            bottom: -200px;
+            left: -200px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 30px) scale(1.1); }
+        }
+
+        /* ─── Navigation ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 60px;
+            background: rgba(10, 10, 15, 0.95);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-2);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .logo span { color: var(--accent); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover { color: var(--text); }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        /* ─── Hero Section ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 .accent { color: var(--accent); }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-dim);
+            font-weight: 300;
+            max-width: 700px;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 40px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dim);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Stats Bar ─── */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ─── Pipeline Section ─── */
+        .section {
+            padding: 120px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pipeline-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .pipeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .pipeline-card:hover::before { transform: scaleX(1); }
+
+        .pipeline-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .pipeline-card.brown-2::before { background: var(--cyan); }
+
+        .pipeline-card.brown-2:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .pipeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .pipeline-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .pipeline-target {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .pipeline-status {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-lead {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--accent);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+
+        .status-backup {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .pipeline-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .pipeline-meta-item label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .pipeline-meta-item span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .pipeline-progress {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .progress-pct {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 1s ease;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .pipeline-card.brown-2 .progress-fill {
+            background: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+        }
+
+        .pipeline-card.brown-2 .progress-pct { color: var(--cyan); }
+
+        /* ─── Platform Section ─── */
+        .platform-section {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .platform-visual {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+        }
+
+        .platform-loop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .loop-step {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .loop-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .loop-step:hover .loop-icon {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--accent-glow);
+        }
+
+        .loop-step:nth-child(2) .loop-icon { background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.3); }
+        .loop-step:nth-child(3) .loop-icon { background: rgba(255, 200, 51, 0.1); border-color: rgba(255, 200, 51, 0.3); }
+        .loop-step:nth-child(4) .loop-icon { background: rgba(51, 255, 102, 0.1); border-color: rgba(51, 255, 102, 0.3); }
+        .loop-step:nth-child(5) .loop-icon { background: rgba(180, 51, 255, 0.1); border-color: rgba(180, 51, 255, 0.3); }
+
+        .loop-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .loop-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .loop-arrow {
+            font-size: 2rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        /* ─── Team Section ─── */
+        .team-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .team-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 20px 60px var(--accent-glow);
+        }
+
+        .team-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .team-title {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-bio {
+            color: var(--text-dim);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .team-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .team-stat {
+            text-align: center;
+        }
+
+        .team-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .team-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ─── Timeline ─── */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--cyan) 100%);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .timeline-item.done .timeline-marker {
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .timeline-item.future .timeline-marker {
+            border-color: var(--text-muted);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 5px;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item.future .timeline-date { color: var(--text-muted); }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* ─── CTA Section ─── */
+        .cta-section {
+            text-align: center;
+            padding: 120px 40px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,51,102,0.05) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            padding: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-logo span { color: var(--accent); }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--text); }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ─── Scroll Animations ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Responsive ─── */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5em; }
-            .hero .subtitle { font-size: 1.2em; }
             nav { padding: 15px 20px; }
-            nav ul { gap: 15px; }
-            .section { padding: 60px 20px; }
-            .platform-grid { grid-template-columns: repeat(2, 1fr); }
+            nav ul { display: none; }
+            .section { padding: 80px 20px; }
+            .hero { padding: 100px 20px 60px; }
+            .stats-bar { flex-direction: column; gap: 40px; }
+            .pipeline-grid { grid-template-columns: 1fr; }
+            .platform-loop { flex-direction: column; }
+            .loop-arrow { transform: rotate(90deg); }
             .team-card { flex-direction: column; text-align: center; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+
+        /* ─── DNA Animation ─── */
+        .dna-strand {
+            position: absolute;
+            width: 100px;
+            height: 200px;
+            opacity: 0.1;
+            right: 10%;
+            top: 20%;
+        }
+
+        .dna-strand svg {
+            width: 100%;
+            height: 100%;
+            animation: rotateDNA 20s linear infinite;
+        }
+
+        @keyframes rotateDNA {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">BrownBioTech</div>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-icon">BB</div>
+            Brown<span>Bio</span>Tech
+        </div>
         <ul>
             <li><a href="#pipeline">Pipeline</a></li>
             <li><a href="#platform">Platform</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#timeline">Milestones</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
         </ul>
     </nav>
-    
-    <div class="hero">
-        <h1>BrownBioTech</h1>
-        <p class="subtitle">AI-First Drug Discovery for Lung Cancer</p>
-        <span class="tag">Preclinical Stage — IND Filing Q3 2026</span>
-        <div class="cta-group">
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span>IND Filing Q3 2026</span>
+        </div>
+        <h1>
+            AI-First<br>
+            <span class="accent">Lung Cancer</span><br>
+            Therapeutics
+        </h1>
+        <p class="hero-subtitle">
+            Pioneering the future of oncology drug discovery with autonomous AI research and precision medicine.
+        </p>
+        <div class="hero-cta">
             <a href="#pipeline" class="btn btn-primary">View Pipeline</a>
             <a href="#contact" class="btn btn-secondary">Partner With Us</a>
         </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-value">2</div>
+            <div class="stat-label">Pipeline Programs</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">72</div>
+            <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">3,800+</div>
+            <div class="stat-label">Citations</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">15+</div>
+            <div class="stat-label">Years Research</div>
+        </div>
     </div>
-    
-    <div class="section" id="pipeline">
-        <h2>Our Pipeline</h2>
-        <p class="lead">Two precision medicine programs targeting lung cancer with novel mechanisms.</p>
-        
+
+    <!-- Pipeline -->
+    <section class="section" id="pipeline">
+        <div class="section-header reveal">
+            <span class="section-label">Our Pipeline</span>
+            <h2 class="section-title">Precision Medicines for<br>Lung Cancer</h2>
+            <p class="section-desc">Two differentiated programs targeting novel mechanisms in NSCLC.</p>
+        </div>
+
         <div class="pipeline-grid">
-            <div class="pipeline-card lead">
-                <span class="badge">Lead Program</span>
-                <h3>BROWN-1</h3>
-                <p class="target">DGAT1 Inhibitor</p>
-                <table>
-                    <tr><td>Indication</td><td>Non-Small Cell Lung Cancer</td></tr>
-                    <tr><td>Mechanism</td><td>Lipid metabolism inhibition</td></tr>
-                    <tr><td>Stage</td><td><strong style="color:#4CAF50">In vivo efficacy ✓</strong></td></tr>
-                    <tr><td>Milestone</td><td>IND filing Q3 2026</td></tr>
-                </table>
+            <div class="pipeline-card reveal">
+                <div class="pipeline-header">
+                    <div>
+                        <h3 class="pipeline-name">BROWN-1</h3>
+                        <span class="pipeline-target">DGAT1 Inhibitor</span>
+                    </div>
+                    <span class="pipeline-status status-lead">Lead Program</span>
+                </div>
+                <div class="pipeline-meta">
+                    <div class="pipeline-meta-item">
+                        <label>Indication</label>
+                        <span>NSCLC</span>
+                    </div>
+                    <div class="pipeline-meta-item">
+                        <label>Mechanism</label>
+                        <span>Lipid Metabolism</span>
+                    </div>
+                    <div class="pipeline-meta-item">
+                        <label>Stage</label>
+                        <span style="color: #4CAF50;">In Vivo ✓</span>
+                    </div>
+                    <div class="pipeline-meta-item">
+                        <label>Milestone</label>
+                        <span>IND Q3 2026</span>
+                    </div>
+                </div>
+                <div class="pipeline-progress">
+                    <div class="progress-header">
+                        <span class="progress-label">Development Progress</span>
+                        <span class="progress-pct">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="pipeline-card backup">
-                <span class="badge">Second Program</span>
-                <h3>BROWN-2</h3>
-                <p class="target">YARS2 Inhibitor</p>
-                <table>
-                    <tr><td>Indication</td><td>Non-Small Cell Lung Cancer</td></tr>
-                    <tr><td>Mechanism</td><td>Mitochondrial targeting</td></tr>
-                    <tr><td>Stage</td><td><strong>In vitro validation ✓</strong></td></tr>
-                    <tr><td>Milestone</td><td>In vivo studies H2 2026</td></tr>
-                </table>
+
+            <div class="pipeline-card brown-2 reveal">
+                <div class="pipeline-header">
+                    <div>
+                        <h3 class="pipeline-name">BROWN-2</h3>
+                        <span class="pipeline-target">YARS2 Inhibitor</span>
+                    </div>
+                    <span class="pipeline-status status-backup">Second Program</span>
+                </div>
+                <div class="pipeline-meta">
+                    <div class="pipeline-meta-item">
+                        <label>Indication</label>
+                        <span>NSCLC</span>
+                    </div>
+                    <div class="pipeline-meta-item">
+                        <label>Mechanism</label>
+                        <span>Mitochondrial</span>
+                    </div>
+                    <div class="pipeline-meta-item">
+                        <label>Stage</label>
+                        <span>In Vitro ✓</span>
+                    </div>
+                    <div class="pipeline-meta-item">
+                        <label>Milestone</label>
+                        <span>In Vivo H2 2026</span>
+                    </div>
+                </div>
+                <div class="pipeline-progress">
+                    <div class="progress-header">
+                        <span class="progress-label">Development Progress</span>
+                        <span class="progress-pct">40%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 40%;"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="platform" id="platform">
-        <div class="platform-inner">
-            <h2>Technology Platform</h2>
-            <p class="lead">ARP — Autonomous Research Pipeline</p>
-            
-            <div class="platform-grid">
-                <div class="platform-item">
-                    <div class="icon">🔬</div>
-                    <h3>Target Analysis</h3>
-                    <p>AI-powered validation of drug targets from literature and omics data</p>
+    </section>
+
+    <!-- Platform -->
+    <section class="section platform-section" id="platform">
+        <div class="section-header reveal">
+            <span class="section-label">Technology</span>
+            <h2 class="section-title">ARP: Autonomous Research Pipeline</h2>
+            <p class="section-desc">Multi-model AI agents combined with continuous experimental validation.</p>
+        </div>
+
+        <div class="platform-visual reveal">
+            <div class="platform-loop">
+                <div class="loop-step">
+                    <div class="loop-icon">🔬</div>
+                    <div class="loop-label">Research</div>
+                    <div class="loop-desc">Literature & targets</div>
                 </div>
-                <div class="platform-item">
-                    <div class="icon">🧬</div>
-                    <h3>Molecular Design</h3>
-                    <p>Generative AI for novel compounds with optimized properties</p>
+                <div class="loop-arrow">→</div>
+                <div class="loop-step">
+                    <div class="loop-icon">🧬</div>
+                    <div class="loop-label">Design</div>
+                    <div class="loop-desc">Molecular generation</div>
                 </div>
-                <div class="platform-item">
-                    <div class="icon">🧪</div>
-                    <h3>Structure Prediction</h3>
-                    <p>AlphaFold-powered binding affinity optimization</p>
+                <div class="loop-arrow">→</div>
+                <div class="loop-step">
+                    <div class="loop-icon">🧪</div>
+                    <div class="loop-label">Test</div>
+                    <div class="loop-desc">Wet lab validation</div>
                 </div>
-                <div class="platform-item">
-                    <div class="icon">📊</div>
-                    <h3>ADMET Prediction</h3>
-                    <p>In silico absorption, distribution, metabolism, excretion, toxicity</p>
+                <div class="loop-arrow">→</div>
+                <div class="loop-step">
+                    <div class="loop-icon">📊</div>
+                    <div class="loop-label">Analyze</div>
+                    <div class="loop-desc">AI feedback loop</div>
                 </div>
+                <div class="loop-arrow">↻</div>
             </div>
         </div>
-    </div>
-    
-    <div class="section" id="team">
-        <h2>Leadership</h2>
-        <p class="lead">World-class scientific team with deep oncology expertise.</p>
-        
-        <div class="team-card">
+    </section>
+
+    <!-- Team -->
+    <section class="section" id="team">
+        <div class="section-header reveal">
+            <span class="section-label">Leadership</span>
+            <h2 class="section-title">Founder & CEO</h2>
+        </div>
+
+        <div class="team-card reveal">
             <div class="team-avatar">OCM</div>
             <div class="team-info">
                 <h3>Dr. Chang-Myung Oh</h3>
-                <p class="title">Founder & CEO</p>
-                <p>Professor, Gwangju Institute of Science and Technology (GIST)<br>
-                PhD, KAIST | 72 publications | 3,800+ citations</p>
-                <div class="team-stats">
-                    <div class="team-stat"><div class="num">72</div><div class="label">Publications</div></div>
-                    <div class="team-stat"><div class="num">3,800+</div><div class="label">Citations</div></div>
-                    <div class="team-stat"><div class="num">15+</div><div class="label">Years Research</div></div>
+                <p class="team-title">Founder & CEO, BrownBioTech</p>
+                <p class="team-bio">
+                    Professor at Gwangju Institute of Science and Technology (GIST). PhD from KAIST. 
+                    Leading researcher in cancer metabolism and drug discovery with 72 publications and 3,800+ citations.
+                </p>
+                <div class="team-st                <div class="team-stats">
+                    <div class="team-stat">
+                        <div class="team-stat-value">72</div>
+                        <div class="team-stat-label">Publications</div>
+                    </div>
+                    <div class="team-stat">
+                        <div class="team-stat-value">3,800+</div>
+                        <div class="team-stat-label">Citations</div>
+                    </div>
+                    <div class="team-stat">
+                        <div class="team-stat-value">15+</div>
+                        <div class="team-stat-label">Years Research</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="section" id="timeline">
-        <h2>Milestones</h2>
-        <p class="lead">Path to bringing new medicines to patients.</p>
-        
-        <div class="timeline">
+    </section>
+
+    <!-- Timeline -->
+    <section class="section" id="timeline">
+        <div class="section-header reveal">
+            <span class="section-label">Milestones</span>
+            <h2 class="section-title">Path to Patients</h2>
+        </div>
+
+        <div class="timeline reveal">
             <div class="timeline-item done">
-                <div class="timeline-date">2024 Q4</div>
+                <div class="timeline-marker">✓</div>
                 <div class="timeline-content">
-                    <h4>Company Founded</h4>
-                    <p>BrownBioTech established at GIST</p>
+                    <div class="timeline-date">2024 Q4</div>
+                    <h4 class="timeline-title">Company Founded</h4>
+                    <p class="timeline-desc">BrownBioTech established at GIST with AI platform</p>
                 </div>
             </div>
             <div class="timeline-item done">
-                <div class="timeline-date">2025 Q4</div>
+                <div class="timeline-marker">✓</div>
                 <div class="timeline-content">
-                    <h4>Target Validation</h4>
-                    <p>DGAT1 and YARS2 validated for NSCLC</p>
+                    <div class="timeline-date">2025 Q4</div>
+                    <h4 class="timeline-title">Target Validation</h4>
+                    <p class="timeline-desc">DGAT1 and YARS2 validated for NSCLC</p>
                 </div>
             </div>
             <div class="timeline-item done">
-                <div class="timeline-date">2026 Q1</div>
+                <div class="timeline-marker">✓</div>
                 <div class="timeline-content">
-                    <h4>In Vivo Efficacy</h4>
-                    <p>BROWN-1 showed efficacy in mouse models</p>
+                    <div class="timeline-date">2026 Q1</div>
+                    <h4 class="timeline-title">In Vivo Efficacy</h4>
+                    <p class="timeline-desc">BROWN-1 showed efficacy in mouse models</p>
                 </div>
             </div>
             <div class="timeline-item future">
-                <div class="timeline-date">2026 Q3</div>
+                <div class="timeline-marker">→</div>
                 <div class="timeline-content">
-                    <h4>IND Filing</h4>
-                    <p>Investigational New Drug application submission</p>
+                    <div class="timeline-date">2026 Q3</div>
+                    <h4 class="timeline-title">IND Filing</h4>
+                    <p class="timeline-desc">Investigational New Drug application submission</p>
                 </div>
             </div>
             <div class="timeline-item future">
-                <div class="timeline-date">2027 Q1</div>
+                <div class="timeline-marker">→</div>
                 <div class="timeline-content">
-                    <h4>Phase 1 Trial</h4>
-                    <p>First-in-human clinical trial</p>
+                    <div class="timeline-date">2027 Q1</div>
+                    <h4 class="timeline-title">Phase 1 Trial</h4>
+                    <p class="timeline-desc">First-in-human clinical trial</p>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <footer id="contact">
-        <div class="contact">📧 contact@brownbiotech.kr</div>
-        <p>Gwangju Institute of Science and Technology<br>
-        123 Cheomdanwagiro, Buk-gu, Gwangju 61005, Korea</p>
-        <br>
-        <p>&copy; 2026 BrownBioTech. All rights reserved.</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2 class="reveal">Ready to Partner?</h2>
+        <p class="reveal">We're seeking strategic partnerships to advance our lung cancer programs through IND and beyond.</p>
+        <div class="hero-cta reveal">
+            <a href="mailto:contact@brownbiotech.kr" class="btn btn-primary">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Brown<span>Bio</span>Tech</div>
+            <div class="footer-links">
+                <a href="#pipeline">Pipeline</a>
+                <a href="#platform">Platform</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-copy">© 2026 BrownBioTech. All rights reserved.</div>
+        </div>
     </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
 </body>
 </html>

@@ -131,16 +131,14 @@
   },
   {
     "id": "exp_015",
-    "name": "ARP v4 Spec",
-    "type": "arp",
-    "status": "completed",
-    "score": 45,
-    "created_at": "2026-03-29T07:43:13.363417",
-    "completed_at": "2026-03-29T07:43:13.363508",
+    "name": "Company Website Landing Page",
+    "type": "website",
+    "status": "proposed",
+    "score": 0.0,
+    "created_at": "2026-03-29T07:57:48.469040",
+    "completed_at": "",
     "notes": "",
-    "artifacts": [
-      "outputs/arp_v4_spec.md"
-    ]
+    "artifacts": []
   },
   {
     "id": "exp_017",
@@ -172,11 +170,13 @@
     "id": "exp_014",
     "name": "Company Pitch Deck",
     "type": "company",
-    "status": "proposed",
-    "score": 0.0,
+    "status": "completed",
+    "score": 40,
     "created_at": "2026-03-29T07:43:47.082551",
-    "completed_at": "",
+    "completed_at": "2026-03-29T07:44:47.203968",
     "notes": "",
-    "artifacts": []
+    "artifacts": [
+      "outputs/brownbiotech_deck_exp_014.md"
+    ]
   }
 ]
