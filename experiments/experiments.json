@@ -50,5 +50,122 @@
     "artifacts": [
       "arp_target_update"
     ]
+  },
+  {
+    "id": "exp_005",
+    "name": "Pipeline Naming \u2014 DGAT1/YARS2 Brand",
+    "type": "pipeline",
+    "status": "completed",
+    "score": 40,
+    "created_at": "2026-03-29T07:39:46.558525",
+    "completed_at": "2026-03-29T07:40:46.696460",
+    "notes": "",
+    "artifacts": [
+      "outputs/pipeline_naming_exp_005.md"
+    ]
+  },
+  {
+    "id": "exp_006",
+    "name": "Company Pitch Deck",
+    "type": "company",
+    "status": "completed",
+    "score": 40,
+    "created_at": "2026-03-29T07:41:46.839689",
+    "completed_at": "2026-03-29T07:42:46.971838",
+    "notes": "",
+    "artifacts": [
+      "outputs/brownbiotech_deck_exp_006.md"
+    ]
+  },
+  {
+    "id": "exp_007",
+    "name": "Pipeline Branding",
+    "type": "pipeline",
+    "status": "completed",
+    "score": 45,
+    "created_at": "2026-03-29T07:43:13.362750",
+    "completed_at": "2026-03-29T07:43:13.362921",
+    "notes": "",
+    "artifacts": [
+      "outputs/pipeline_branding.md"
+    ]
+  },
+  {
+    "id": "exp_009",
+    "name": "Investor Pitch Deck",
+    "type": "company",
+    "status": "completed",
+    "score": 45,
+    "created_at": "2026-03-29T07:43:13.362965",
+    "completed_at": "2026-03-29T07:43:13.363079",
+    "notes": "",
+    "artifacts": [
+      "outputs/pitch_deck.md"
+    ]
+  },
+  {
+    "id": "exp_011",
+    "name": "Company Website",
+    "type": "website",
+    "status": "completed",
+    "score": 45,
+    "created_at": "2026-03-29T07:43:13.363121",
+    "completed_at": "2026-03-29T07:43:13.363257",
+    "notes": "",
+    "artifacts": [
+      "outputs/website.html"
+    ]
+  },
+  {
+    "id": "exp_013",
+    "name": "One-Page Summary",
+    "type": "content",
+    "status": "completed",
+    "score": 20,
+    "created_at": "2026-03-29T07:43:13.363302",
+    "completed_at": "2026-03-29T07:43:13.363384",
+    "notes": "",
+    "artifacts": [
+      "outputs/one_pager.md"
+    ]
+  },
+  {
+    "id": "exp_015",
+    "name": "ARP v4 Spec",
+    "type": "arp",
+    "status": "completed",
+    "score": 45,
+    "created_at": "2026-03-29T07:43:13.363417",
+    "completed_at": "2026-03-29T07:43:13.363508",
+    "notes": "",
+    "artifacts": [
+      "outputs/arp_v4_spec.md"
+    ]
+  },
+  {
+    "id": "exp_017",
+    "name": "Press Release",
+    "type": "content",
+    "status": "completed",
+    "score": 20,
+    "created_at": "2026-03-29T07:43:13.363553",
+    "completed_at": "2026-03-29T07:43:13.363645",
+    "notes": "",
+    "artifacts": [
+      "outputs/one_pager.md"
+    ]
+  },
+  {
+    "id": "exp_019",
+    "name": "Partnership Deck",
+    "type": "partnership",
+    "status": "completed",
+    "score": 35,
+    "created_at": "2026-03-29T07:43:13.363684",
+    "completed_at": "2026-03-29T07:43:13.363777",
+    "notes": "",
+    "artifacts": [
+      "outputs/partnership_deck.md"
+    ]
   }
 ]
