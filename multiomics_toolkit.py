@@ -15,11 +15,8 @@ Tools Integrated:
 Based on 2025 best practices for cancer metabolism research.
 """
 
-import os
-import json
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
-from pathlib import Path
 
 # ─── Tool Registry ─────────────────────────────────────────────────────────────
 
@@ -273,7 +270,7 @@ LONG_READ_TOOLS = {
     "poretools": {
         "name": "PoreTools",
         "category": "quality_checking",
-        "description": " toolkit for Oxford Nanopore reads",
+        "description": "Toolkit for Oxford Nanopore reads",
         "platform": "Python",
         "technologies": ["Oxford Nanopore"],
         "citation": "Loman & Quick, 2015",
@@ -443,7 +440,7 @@ MULTIOMICS_TOOLS = {
         "capabilities": [
             "Metabolic pathway quantification",
             "Gene family profiling",
-            " microbiome-metabolome integration",
+            "Microbiome-metabolome integration",
         ],
         "citation": "Franzosa et al., 2018",
     },
@@ -453,7 +450,7 @@ MULTIOMICS_TOOLS = {
         "description": "Quantitative Insights Into Microbial Ecology",
         "capabilities": [
             "Amplicon analysis",
-            " shotgun metagenomics",
+            "Shotgun metagenomics",
             "Phylogenetics",
         ],
         "citation": "Bolyen et al., 2019",
@@ -532,15 +529,26 @@ LONG_READ_CANCER_APPLICATIONS = {
 }
 
 def get_tools_by_type(tool_type: str) -> List[Dict]:
-    """Get all tools of a specific type."""
+    """Get all tools of a specific type (multiomics only)."""
     return [
         {k: v} for k, v in MULTIOMICS_TOOLS.items()
         if v["type"] == tool_type
     ]
 
+def get_long_read_tools_by_category(category: str) -> List[Dict]:
+    """Get all long-read tools in a specific category."""
+    return [
+        {k: v} for k, v in LONG_READ_TOOLS.items()
+        if v.get("category") == category
+    ]
+
+def get_long_read_application(application: str) -> Optional[Dict]:
+    """Get long-read cancer application details."""
+    return LONG_READ_CANCER_APPLICATIONS.get(application)
+
 def get_tool_info(tool_name: str) -> Optional[Dict]:
-    """Get detailed information about a tool."""
-    return MULTIOMICS_TOOLS.get(tool_name)
+    """Get detailed information about a tool (searches both multiomics and long-read)."""
+    return MULTIOMICS_TOOLS.get(tool_name) or LONG_READ_TOOLS.get(tool_name)
 
 def create_analysis_config(
     analysis_type: str,
@@ -588,6 +596,7 @@ def create_analysis_config(
 # ─── Installation Guide ────────────────────────────────────────────────────────
 
 INSTALL_COMMANDS = {
+    # Multi-omics tools
     "scanpy": "pip install scanpy anndata",
     "spatialcell": "pip install spatialcell",
     "stereopy": "pip install stereopy",
@@ -596,6 +605,20 @@ INSTALL_COMMANDS = {
     "metaphlan": "pip install metaphlan",
     "humann": "pip install humann",
     "qiime2": "conda install qiime2 -c qiime2",
+    # Long-read tools
+    "minimap2": "conda install -c bioconda minimap2",
+    "canu": "conda install -c bioconda canu",
+    "flye": "conda install -c bioconda flye",
+    "racon": "conda install -c bioconda racon",
+    "medaka": "pip install medaka",
+    "nanopolish": "conda install -c bioconda nanopolish",
+    "flair": "pip install flair",
+    "sniffles": "pip install sniffles",
+    "kraken2": "conda install -c bioconda kraken2",
+    "guppy": "Download from Oxford Nanopore (requires account)",
+    "dorado": "Download from Oxford Nanopore (requires account)",
+    "deepvariant": "pip install deepvariant",
+    "clairvoyante": "pip install clairvoyante",
 }
 
 def get_install_command(tool: str) -> str:
