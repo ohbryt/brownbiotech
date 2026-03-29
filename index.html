@@ -850,6 +850,160 @@
             transform: translateY(0);
         }
 
+        /* ─── Tools Cards ─── */
+        .tools-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .tool-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tool-lang {
+            background: var(--purple-light);
+            color: var(--purple);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .tool-file {
+            background: var(--bg-alt);
+            color: var(--text-muted);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tool-features {
+            list-style: none;
+            font-size: 0.8rem;
+        }
+
+        .tool-features li {
+            padding: 4px 0;
+            color: var(--text-secondary);
+        }
+
+        /* ─── ATLAS Section ─── */
+        .atlas-section {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--cyan-light) 100%);
+            border: 1px solid rgba(255, 51, 102, 0.15);
+            border-radius: 20px;
+            padding: 32px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .atlas-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .atlas-section p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .atlas-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .atlas-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .atlas-step-num {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .atlas-step-content {
+            text-align: left;
+        }
+
+        .atlas-step-content strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .atlas-step-content span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .atlas-arrow {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .atlas-section code {
+            background: var(--surface);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 768px) {
             nav { 
@@ -867,10 +1021,13 @@
             .services-grid { grid-template-columns: 1fr; }
             .agents-grid { grid-template-columns: repeat(2, 1fr); }
             .tools-grid { grid-template-columns: repeat(2, 1fr); }
+            .tools-cards-grid { grid-template-columns: 1fr; }
             .team-card { flex-direction: column; text-align: center; }
             .footer-content { flex-direction: column; text-align: center; }
             .platform-loop { flex-direction: column; }
             .loop-arrow { transform: rotate(90deg); }
+            .atlas-flow { flex-direction: column; }
+            .atlas-arrow { transform: rotate(90deg); }
         }
     </style>
 </head>
@@ -1145,6 +1302,113 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Tools & Scripts -->
+    <section class="section" id="tools">
+        <div class="section-header reveal">
+            <span class="section-label">Open Source</span>
+            <h2 class="section-title">BrownBioTech Python Toolkit</h2>
+            <p class="section-desc">Production-ready tools for cancer drug discovery</p>
+        </div>
+
+        <div class="tools-cards-grid">
+            <div class="tool-card reveal">
+                <div class="tool-icon">🔬</div>
+                <h3>Pipeline Tracker</h3>
+                <p class="tool-desc">Track DGAT1/YARS2 development milestones and IND progress</p>
+                <div class="tool-meta">
+                    <span class="tool-lang">Python</span>
+                    <span class="tool-file">pipeline_tracker.py</span>
+                </div>
+                <ul class="tool-features">
+                    <li>✓ Milestone tracking</li>
+                    <li>✓ In vivo/in vitro logging</li>
+                    <li>✓ JSON export</li>
+                    <li>✓ IND progress</li>
+                </ul>
+            </div>
+
+            <div class="tool-card reveal">
+                <div class="tool-icon">📄</div>
+                <h3>IND Generator</h3>
+                <p class="tool-desc">Generate IND application sections for BROWN-1 (DGAT1)</p>
+                <div class="tool-meta">
+                    <span class="tool-lang">Python</span>
+                    <span class="tool-file">ind_generator.py</span>
+                </div>
+                <ul class="tool-features">
+                    <li>✓ 5 IND sections</li>
+                    <li>✓ Target validation</li>
+                    <li>✓ Toxicology data</li>
+                    <li>✓ Markdown export</li>
+                </ul>
+            </div>
+
+            <div class="tool-card reveal">
+                <div class="tool-icon">🧬</div>
+                <h3>Target Validation</h3>
+                <p class="tool-desc">TCGA expression, survival analysis, DepMap CRISPR screens</p>
+                <div class="tool-meta">
+                    <span class="tool-lang">Python</span>
+                    <span class="tool-file">target_validation.py</span>
+                </div>
+                <ul class="tool-features">
+                    <li>✓ TCGA expression</li>
+                    <li>✓ Kaplan-Meier</li>
+                    <li>✓ CRISPR DepMap</li>
+                    <li>✓ Visualization</li>
+                </ul>
+            </div>
+
+            <div class="tool-card reveal">
+                <div class="tool-icon">📊</div>
+                <h3>Pitch Deck Generator</h3>
+                <p class="tool-desc">Generate investor pitch deck with Series A $50M ask</p>
+                <div class="tool-meta">
+                    <span class="tool-lang">Python</span>
+                    <span class="tool-file">pitch_deck_generator.py</span>
+                </div>
+                <ul class="tool-features">
+                    <li>✓ 8 slides</li>
+                    <li>✓ HTML output</li>
+                    <li>✓ PPTX export</li>
+                    <li>✓ $50M Series A</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ATLAS-DrugPipe Section -->
+        <div class="atlas-section reveal">
+            <h3>🧬 ATLAS-DrugPipe: Self-Verified Molecular Repair</h3>
+            <p>Integrates ATLAS self-repair concept with DrugPipe virtual screening for DGAT1/YARS2</p>
+            <div class="atlas-flow">
+                <div class="atlas-step">
+                    <div class="atlas-step-num">1</div>
+                    <div class="atlas-step-content">
+                        <strong>Generate</strong>
+                        <span>Diffusion + GNN search</span>
+                    </div>
+                </div>
+                <div class="atlas-arrow">→</div>
+                <div class="atlas-step">
+                    <div class="atlas-step-num">2</div>
+                    <div class="atlas-step-content">
+                        <strong>Verify</strong>
+                        <span>Docking + ADMET</span>
+                    </div>
+                </div>
+                <div class="atlas-arrow">→</div>
+                <div class="atlas-step">
+                    <div class="atlas-step-num">3</div>
+                    <div class="atlas-step-content">
+                        <strong>Repair</strong>
+                        <span>PR-CoT self-test</span>
+                    </div>
+                </div>
+            </div>
+            <code>drugpipe_atlas.py</code>
         </div>
     </section>
 
