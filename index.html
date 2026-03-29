@@ -1004,6 +1004,178 @@
             color: var(--primary);
         }
 
+        /* ─── Contact Form ─── */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 48px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-actions {
+            padding-top: 8px;
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1rem;
+        }
+
+        .contact-info {
+            padding-left: 24px;
+            border-left: 1px solid var(--border);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .contact-info > p {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-note {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .contact-note p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Form Success Message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 48px;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .form-success-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .form-success h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-success p {
+            color: var(--text-secondary);
+        }
+
+        /* Form Error */
+        .form-error {
+            display: none;
+            padding: 12px 16px;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 768px) {
             nav { 
@@ -1028,6 +1200,19 @@
             .loop-arrow { transform: rotate(90deg); }
             .atlas-flow { flex-direction: column; }
             .atlas-arrow { transform: rotate(90deg); }
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 32px 24px;
+            }
+            .form-row { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .contact-info {
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid var(--border);
+                padding-top: 24px;
+                margin-top: 8px;
+            }
         }
     </style>
 </head>
@@ -1463,12 +1648,86 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-        <h2 class="reveal">Ready to Partner?</h2>
-        <p class="reveal">We're seeking strategic partnerships to advance our cancer programs through IND and beyond.</p>
-        <div class="hero-cta reveal">
-            <a href="mailto:brownbio.ocm@gmail.com" class="btn btn-primary">Contact Us →</a>
+    <!-- Contact Form -->
+    <section class="section" id="contact">
+        <div class="section-header reveal">
+            <span class="section-label">Get in Touch</span>
+            <h2 class="section-title">Partner With Us</h2>
+            <p class="section-desc">Interested in collaboration, investment, or licensing? Send us a message.</p>
+        </div>
+
+        <div class="contact-container reveal">
+            <form id="contact-form" class="contact-form" onsubmit="handleContactSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Smith">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@institution.edu">
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization *</label>
+                        <input type="text" id="organization" name="organization" required placeholder="University / Company">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inquiryType">Inquiry Type *</label>
+                        <select id="inquiryType" name="inquiryType" required>
+                            <option value="">Select type...</option>
+                            <option value="collaboration">Research Collaboration</option>
+                            <option value="investment">Investment</option>
+                            <option value="licensing">Licensing</option>
+                            <option value="scientific">Scientific Discussion</option>
+                            <option value="partnership">Strategic Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" placeholder="South Korea">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required rows="6" placeholder="Tell us about your inquiry..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        Send Message →
+                    </button>
+                </div>
+            </form>
+
+            <div class="contact-info">
+                <h3>BrownBioTech</h3>
+                <p>AI-First Cancer Therapeutics</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Gwangju Institute of Science and Technology (GIST), South Korea</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>brownbio.ocm@gmail.com</span>
+                    </div>
+                </div>
+                <div class="contact-note">
+                    <p>We typically respond within 2-3 business days.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1512,6 +1771,55 @@
         };
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
+
+        // Contact form submission
+        function handleContactSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const errorDiv = form.querySelector('.form-error') || document.createElement('div');
+
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Basic validation
+            if (!data.firstName || !data.lastName || !data.email || !data.organization || !data.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            // Build email content
+            const subject = encodeURIComponent(`[BrownBioTech] ${data.inquiryType || 'General'} Inquiry from ${data.firstName} ${data.lastName}`);
+            const body = encodeURIComponent(`
+Name: ${data.firstName} ${data.lastName}
+Organization: ${data.organization}
+Email: ${data.email}
+Country: ${data.country || 'N/A'}
+Inquiry Type: ${data.inquiryType || 'General'}
+
+Message:
+${data.message}
+            `.trim());
+
+            // Open mail client
+            window.location.href = `mailto:brownbio.ocm@gmail.com?subject=${subject}&body=${body}`;
+
+            // Show success state
+            submitBtn.textContent = '✓ Message Sent!';
+
+            // Reset form after delay
+            setTimeout(() => {
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message →';
+            }, 3000);
+        }
     </script>
 </body>
 </html>
