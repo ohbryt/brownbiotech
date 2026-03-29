@@ -824,6 +824,65 @@
             line-height: 1.5;
         }
 
+        /* ─── acpx Section ─── */
+        .acpx-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--primary-light) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .acpx-section h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .acpx-section > p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .acpx-commands {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .acpx-cmd {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .acpx-cmd code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .acpx-cmd span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         /* ─── Team ─── */
         .team-card {
             max-width: 700px;
@@ -1876,6 +1935,26 @@
                     <span class="tech-adv-icon">💰</span>
                     <h4>Cost-Effective</h4>
                     <p>AI-first approach reduces experimental costs by prioritizing high-confidence targets</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- acpx Integration -->
+        <div class="acpx-section reveal">
+            <h3>🤖 ACPX Agent Protocol Integration</h3>
+            <p>BrownBioTech uses acpx for structured agent-to-agent communication, enabling seamless integration with Codex, Claude Code, and Pi coding agents.</p>
+            <div class="acpx-commands">
+                <div class="acpx-cmd">
+                    <code>python brown_acpx.py workflow --type target --target DGAT1</code>
+                    <span>Complete target analysis workflow</span>
+                </div>
+                <div class="acpx-cmd">
+                    <code>python brown_acpx.py workflow --type design --target DGAT1</code>
+                    <span>Molecular design with lead optimization</span>
+                </div>
+                <div class="acpx-cmd">
+                    <code>python brown_acpx.py workflow --type ind --program BROWN-1</code>
+                    <span>IND preparation workflow</span>
                 </div>
             </div>
         </div>
