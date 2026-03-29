@@ -292,11 +292,13 @@
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 16px;
             color: var(--text);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .section-desc {
@@ -341,20 +343,26 @@
         }
 
         .pipeline-name {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text);
             margin-bottom: 6px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .pipeline-target {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             background: var(--bg-alt);
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 6px;
             display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
 
         .pipeline-status {
@@ -667,6 +675,8 @@
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 16px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .tech-tool-features {
@@ -749,11 +759,17 @@
             font-size: 0.9rem;
             color: var(--text);
             margin-bottom: 2px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            max-width: 100%;
         }
 
         .tech-pipeline-content span {
             font-size: 0.75rem;
             color: var(--text-secondary);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            max-width: 100%;
         }
 
         .tech-pipeline-arrow {
