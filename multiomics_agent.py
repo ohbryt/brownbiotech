@@ -10,6 +10,8 @@ Tools:
 - Metagenomics: MetaPhlAn, HUMAnN, QIIME2
 """
 
+import json
+import asyncio
 from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional
 from enum import Enum
@@ -17,10 +19,12 @@ from enum import Enum
 # Import from multiomics_toolkit
 from multiomics_toolkit import (
     MULTIOMICS_TOOLS,
+    LONG_READ_TOOLS,
     BROWN_MULTIOMICS_PIPELINE,
+    LONG_READ_CANCER_APPLICATIONS,
     get_tools_by_type,
     get_tool_info,
-    create_analysis_config,
+    get_long_read_tools_by_category,
 )
 
 class AnalysisType(Enum):
@@ -300,22 +304,37 @@ class MultiOmicsAgent:
         
         return recommendations.get(analysis_type, {}).get(budget, [])
 
-if __name__ == "__main__":
+def run_demo():
+    """Run a demo analysis."""
     agent = MultiOmicsAgent()
     
     print("BrownBioTech Multi-Omics Agent")
     print("="*50)
     print(f"\nCapabilities: {agent.get_capabilities()['analysis_types']}")
-    print(f"Tools: {len(agent.tools)}")
+    print(f"Tools: {len(agent.tools)} multiomics + {len(LONG_READ_TOOLS)} long-read")
     
-    # Example analysis
-    import asyncio
+    # Demo: single-cell analysis
+    print("\n--- Single-Cell Analysis Demo ---")
     request = MultiOmicsAnalysisRequest(
-        analysis_type=AnalysisType.MOFA,
+        analysis_type=AnalysisType.SINGLE_CELL,
         cancer_type="NSCLC",
         target_gene="DGAT1",
     )
-    
     results = asyncio.run(agent.analyze(request))
-    print(f"\nAnalysis results:")
-    print(json.dumps(results, indent=2))
+    print(f"Cell types: {results['results']['cell_types_identified']}")
+    print(f"Insights: {len(results['insights'])} generated")
+    
+    # Demo: tool recommendations
+    print("\n--- Tool Recommendations ---")
+    for budget in ["low", "medium", "high"]:
+        tools = agent.get_tool_recommendations("single_cell", budget)
+        print(f"  {budget}: {tools}")
+    
+    print("\n✓ All demos passed!")
+
+if __name__ == "__main__":
+    try:
+        run_demo()
+    except Exception as e:
+        print(f"Error: {e}")
+        raise
