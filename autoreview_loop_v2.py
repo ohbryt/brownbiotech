@@ -20,10 +20,9 @@ from typing import Optional
 
 # ─── API Configuration ──────────────────────────────────────────────────────
 
-OPENROUTER_API_KEY = os.environ.get(
-    "OPENROUTER_API_KEY", 
-    "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"
-)
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+if not OPENROUTER_API_KEY:
+    raise ValueError("OPENROUTER_API_KEY environment variable is required")
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # Model assignments

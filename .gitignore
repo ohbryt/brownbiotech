@@ -1,0 +1,29 @@
+# Environment
+.env
+.env.local
+.env.production
+
+# Vercel
+.vercel
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Temp
+tmp/
+temp/
+.DS_Store
