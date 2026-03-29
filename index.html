@@ -504,6 +504,310 @@
             flex-shrink: 0;
         }
 
+        /* ─── Technology Overview ─── */
+        .tech-overview {
+            max-width: 900px;
+            margin: 0 auto 48px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+        }
+
+        .tech-intro h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .tech-intro p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        /* ─── Tech Components ─── */
+        .tech-components {
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+
+        .tech-component {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tech-component-header {
+            margin-bottom: 24px;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .tech-component-header h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .tech-tagline {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .tech-description {
+            margin-bottom: 24px;
+        }
+
+        .tech-description p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .tech-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tech-feature {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .tech-feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tech-feature strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .tech-feature p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ─── Tech Tools Grid ─── */
+        .tech-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 48px;
+        }
+
+        .tech-tool-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .tech-tool-header {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .tech-tool-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .tech-tool-header h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .tech-tool-category {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-tool-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .tech-tool-features {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .tech-tool-features li {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .tech-tool-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-tool-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-alt);
+            padding: 6px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* ─── Tech Pipeline ─── */
+        .tech-pipeline {
+            max-width: 1000px;
+            margin: 0 auto 48px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--cyan-light) 100%);
+            border: 1px solid rgba(255, 51, 102, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .tech-pipeline h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--text);
+        }
+
+        .tech-pipeline-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tech-pipeline-num {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .tech-pipeline-content {
+            text-align: left;
+        }
+
+        .tech-pipeline-content strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .tech-pipeline-content span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .tech-pipeline-arrow {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* ─── Tech Advantages ─── */
+        .tech-advantages {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tech-advantages h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--text);
+        }
+
+        .tech-adv-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .tech-adv {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .tech-adv-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .tech-adv h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .tech-adv p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
         /* ─── Team ─── */
         .team-card {
             max-width: 700px;
@@ -1213,6 +1517,10 @@
                 padding-top: 24px;
                 margin-top: 8px;
             }
+            .tech-tools-grid { grid-template-columns: 1fr; }
+            .tech-adv-grid { grid-template-columns: repeat(2, 1fr); }
+            .tech-pipeline-flow { flex-direction: column; }
+            .tech-pipeline-arrow { transform: rotate(90deg); }
         }
     </style>
 </head>
@@ -1360,30 +1668,199 @@
     <section class="section section-alt" id="platform">
         <div class="section-header reveal">
             <span class="section-label">Technology</span>
-            <h2 class="section-title">ARP: Autonomous Research Pipeline</h2>
-            <p class="section-desc">Multi-model AI agents combined with continuous experimental validation.</p>
+            <h2 class="section-title">BROWN-AI™ Drug Discovery Platform</h2>
+            <p class="section-desc">An integrated AI-first platform combining autonomous research agents with validated experimental workflows for accelerated cancer therapeutics development.</p>
         </div>
 
-        <div class="platform-visual reveal">
-            <div class="platform-loop">
-                <div class="loop-step">
-                    <div class="loop-icon">🔬</div>
-                    <div class="loop-label">Research</div>
-                    <div class="loop-desc">Literature & targets</div>
+        <!-- Technology Overview -->
+        <div class="tech-overview reveal">
+            <div class="tech-intro">
+                <h3>What is BROWN-AI™?</h3>
+                <p>BROWN-AI™ is BrownBioTech's proprietary drug discovery platform that combines multi-model AI agents with continuous experimental validation. Built on years of cancer metabolism research, the platform enables rapid target identification, molecular design, and preclinical development—all accelerated by machine learning.</p>
+                <p>The platform integrates diverse data sources including TCGA, DepMap, and proprietary GIST laboratory data, enabling a closed-loop approach from target discovery to IND filing.</p>
+            </div>
+        </div>
+
+        <!-- Core Components -->
+        <div class="tech-components reveal">
+            <div class="tech-component">
+                <div class="tech-component-header">
+                    <span class="tech-badge">Core Platform</span>
+                    <h3>ARP™ — Autonomous Research Pipeline</h3>
+                    <p class="tech-tagline">Multi-model AI agents for continuous drug discovery</p>
                 </div>
-                <div class="loop-arrow">→</div>
-                <div class="loop-step">
-                    <div class="loop-icon">🧬</div>
-                    <div class="loop-label">Design</div>
-                    <div class="loop-desc">Molecular generation</div>
+                <div class="tech-description">
+                    <p>ARP™ is the orchestration layer that coordinates multiple AI agents to perform autonomous research. Each agent specializes in a specific task—literature analysis, multi-omics integration, molecular design—while the supervisor agent ensures coherent research direction.</p>
+                    <p>The platform uses a research-Design-Test-Analyze loop that continuously refines hypotheses based on experimental results, mimicking the scientific method but at computational speed.</p>
                 </div>
-                <div class="loop-arrow">→</div>
-                <div class="loop-step">
-                    <div class="loop-icon">🧪</div>
-                    <div class="loop-label">Test</div>
-                    <div class="loop-desc">Wet lab validation</div>
+                <div class="tech-features">
+                    <div class="tech-feature">
+                        <span class="tech-feature-icon">🤖</span>
+                        <div>
+                            <strong>Multi-Model Routing</strong>
+                            <p>Dynamic model selection based on task complexity—Gemini Flash Lite for fast tasks, GLM-5 for complex reasoning, Nemotron for research synthesis.</p>
+                        </div>
+                    </div>
+                    <div class="tech-feature">
+                        <span class="tech-feature-icon">🔄</span>
+                        <div>
+                            <strong>Closed-Loop Validation</strong>
+                            <p>GIST wet lab integration enables rapid experimental validation of AI predictions, creating a continuous feedback loop.</p>
+                        </div>
+                    </div>
+                    <div class="tech-feature">
+                        <span class="tech-feature-icon">📊</span>
+                        <div>
+                            <strong>Knowledge Graph CoT</strong>
+                            <p>KG-CoT reasoning maintains coherent scientific narrative across thousands of literature sources and experimental results.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="loop-arrow">↻</div>
+            </div>
+        </div>
+
+        <!-- Named Tools -->
+        <div class="tech-tools-grid reveal">
+            <div class="tech-tool-card">
+                <div class="tech-tool-header">
+                    <span class="tech-tool-icon">🧬</span>
+                    <div>
+                        <h4>TargetScan™</h4>
+                        <span class="tech-tool-category">Target Discovery</span>
+                    </div>
+                </div>
+                <p class="tech-tool-desc">AI-powered mining of cancer metabolism dependencies from TCGA, DepMap, and RPPA500 proteomics data. Identifies novel therapeutic targets through multi-omics integration and CRISPR dependency scoring.</p>
+                <ul class="tech-tool-features">
+                    <li>✓ TCGA transcriptomics (11,000+ samples)</li>
+                    <li>✓ DepMap CRISPR essentiality screens</li>
+                    <li>✓ RPPA500 proteomics profiling</li>
+                    <li>✓ Survival correlation analysis</li>
+                    <li>✓ Drugability assessment scoring</li>
+                </ul>
+                <div class="tech-tool-meta">Source: target_validation.py</div>
+            </div>
+
+            <div class="tech-tool-card">
+                <div class="tech-tool-header">
+                    <span class="tech-tool-icon">🔬</span>
+                    <div>
+                        <h4>MoleculeForge™</h4>
+                        <span class="tech-tool-category">Molecular Design</span>
+                    </div>
+                </div>
+                <p class="tech-tool-desc">Diffusion-based molecular generation combined with GNN-guided similarity search. Generates novel drug-like compounds optimized for target binding and ADMET properties.</p>
+                <ul class="tech-tool-features">
+                    <li>✓ Diffusion model generation</li>
+                    <li>✓ E3GNN/Equiformer similarity search</li>
+                    <li>✓ Lipinski rule filtering</li>
+                    <li>✓ Scaffold hopping algorithms</li>
+                    <li>✓ Property optimization (MW, LogP, TPSA)</li>
+                </ul>
+                <div class="tech-tool-meta">Powered by DrugPipe + Equiformer</div>
+            </div>
+
+            <div class="tech-tool-card">
+                <div class="tech-tool-header">
+                    <span class="tech-tool-icon">⚗️</span>
+                    <div>
+                        <h4>ATLAS-VS™</h4>
+                        <span class="tech-tool-category">Virtual Screening</span>
+                    </div>
+                </div>
+                <p class="tech-tool-desc">Self-verified virtual screening combining automated docking with AI-powered iterative repair. Based on ATLAS architecture for self-correcting molecular optimization.</p>
+                <ul class="tech-tool-features">
+                    <li>✓ QVina-W high-throughput docking</li>
+                    <li>✓ Self-generated test case verification</li>
+                    <li>✓ PR-CoT repair (multi-perspective)</li>
+                    <li>✓ Geometric Lens scoring</li>
+                    <li>✓ ADMET property prediction</li>
+                </ul>
+                <div class="tech-tool-meta">Source: drugpipe_atlas.py</div>
+            </div>
+
+            <div class="tech-tool-card">
+                <div class="tech-tool-header">
+                    <span class="tech-tool-icon">📈</span>
+                    <div>
+                        <h4>IND-Prep™</h4>
+                        <span class="tech-tool-category">Regulatory</span>
+                    </div>
+                </div>
+                <p class="tech-tool-desc">Automated IND application document generation with pre-clinical pharmacology, toxicology, and manufacturing sections. Streamlines regulatory submission preparation.</p>
+                <ul class="tech-tool-features">
+                    <li>✓ 5 IND sections (eCTD format)</li>
+                    <li>✓ Target validation summaries</li>
+                    <li>✓ Toxicology data compilation</li>
+                    <li>✓ Manufacturing specifications</li>
+                    <li>✓ Markdown export for review</li>
+                </ul>
+                <div class="tech-tool-meta">Source: ind_generator.py</div>
+            </div>
+        </div>
+
+        <!-- Pipeline Visualization -->
+        <div class="tech-pipeline reveal">
+            <h3>How BROWN-AI™ Works</h3>
+            <div class="tech-pipeline-flow">
+                <div class="tech-pipeline-step">
+                    <div class="tech-pipeline-num">1</div>
+                    <div class="tech-pipeline-content">
+                        <strong>Target Identification</strong>
+                        <span>TargetScan™ analyzes multi-omics data to identify metabolic vulnerabilities in cancer cells</span>
+                    </div>
+                </div>
+                <div class="tech-pipeline-arrow">→</div>
+                <div class="tech-pipeline-step">
+                    <div class="tech-pipeline-num">2</div>
+                    <div class="tech-pipeline-content">
+                        <strong>Molecular Design</strong>
+                        <span>MoleculeForge™ generates novel compounds optimized for the target</span>
+                    </div>
+                </div>
+                <div class="tech-pipeline-arrow">→</div>
+                <div class="tech-pipeline-step">
+                    <div class="tech-pipeline-num">3</div>
+                    <div class="tech-pipeline-content">
+                        <strong>Virtual Screening</strong>
+                        <span>ATLAS-VS™ performs self-verified docking and iterative repair</span>
+                    </div>
+                </div>
+                <div class="tech-pipeline-arrow">→</div>
+                <div class="tech-pipeline-step">
+                    <div class="tech-pipeline-num">4</div>
+                    <div class="tech-pipeline-content">
+                        <strong>Wet Validation</strong>
+                        <span>GIST laboratory validates hits in cellular and animal models</span>
+                    </div>
+                </div>
+                <div class="tech-pipeline-arrow">↻</div>
+            </div>
+        </div>
+
+        <!-- Why BROWN-AI™ -->
+        <div class="tech-advantages reveal">
+            <h3>Why BROWN-AI™?</h3>
+            <div class="tech-adv-grid">
+                <div class="tech-adv">
+                    <span class="tech-adv-icon">🚀</span>
+                    <h4>Accelerated Timeline</h4>
+                    <p>Autonomous research loops reduce target-to-lead time by 60% compared to traditional methods</p>
+                </div>
+                <div class="tech-adv">
+                    <span class="tech-adv-icon">🎯</span>
+                    <h4>Higher Success Rate</h4>
+                    <p>Self-verified virtual screening identifies quality hits that more likely advance to IND</p>
+                </div>
+                <div class="tech-adv">
+                    <span class="tech-adv-icon">🔬</span>
+                    <h4>Built-in Validation</h4>
+                    <p>GIST wet lab integration ensures all predictions are experimentally validated</p>
+                </div>
+                <div class="tech-adv">
+                    <span class="tech-adv-icon">💰</span>
+                    <h4>Cost-Effective</h4>
+                    <p>AI-first approach reduces experimental costs by prioritizing high-confidence targets</p>
+                </div>
             </div>
         </div>
     </section>
