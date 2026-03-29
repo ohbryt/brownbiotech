@@ -23,6 +23,271 @@ from pathlib import Path
 
 # ─── Tool Registry ─────────────────────────────────────────────────────────────
 
+LONG_READ_TOOLS = {
+    # Long-Read Sequencing Tools (from long-read-tools.org)
+    # Ritchie Lab, Walter and Eliza Hall Institute of Medical Research
+    
+    # Alignment
+    "minimap2": {
+        "name": "Minimap2",
+        "category": "alignment",
+        "description": "Fast pairwise aligner for mapping long reads",
+        "platform": "C/Python",
+        "technologies": ["Oxford Nanopore", "PacBio", "Bionano"],
+        "citation": "Li, 2018",
+    },
+    "blasr": {
+        "name": "BLASR",
+        "category": "alignment",
+        "description": "Basic Local Alignment with Successive Refinement",
+        "platform": "C++",
+        "technologies": ["PacBio"],
+        "citation": "Chaisson & Tesler, 2012",
+    },
+    "ngmlr": {
+        "name": "NGMLR",
+        "category": "alignment",
+        "description": "Sensitive aligner for structural variation detection",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Sedlazeck et al., 2018",
+    },
+    
+    # Assembly
+    "canu": {
+        "name": "Canu",
+        "category": "denovo_assembly",
+        "description": "Long-read assembler with error correction",
+        "platform": "C++/Perl",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Koren et al., 2017",
+    },
+    "flye": {
+        "name": "Flye",
+        "category": "denovo_assembly",
+        "description": "Fast and accurate long-read assembler",
+        "platform": "Python/C++",
+        "technologies": ["Oxford Nanopore", "PacBio", "Bionano"],
+        "citation": "Kolmogorov et al., 2019",
+    },
+    "necat": {
+        "name": "NECAT",
+        "category": "denovo_assembly",
+        "description": "Nanopore-based genome assembler",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Chen et al., 2021",
+    },
+    "wtdbg2": {
+        "name": "WTDBG2",
+        "category": "denovo_assembly",
+        "description": "Fuzzy Bruijn graph assembler for long reads",
+        "platform": "C",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Ruan & Li, 2020",
+    },
+    
+    # Error Correction & Polishing
+    "racon": {
+        "name": "Racon",
+        "category": "error_correction",
+        "description": "Ultrafast consensus module for long reads",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Vaser et al., 2017",
+    },
+    "medaka": {
+        "name": "Medaka",
+        "category": "error_correction",
+        "description": "Oxford Nanopore-specific sequence polisher",
+        "platform": "Python/C++",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Oxford Nanopore Technologies",
+    },
+    "arrow": {
+        "name": "Arrow",
+        "category": "error_correction",
+        "description": "PacBio consensus polisher",
+        "platform": "C++",
+        "technologies": ["PacBio"],
+        "citation": "Pacific Biosciences",
+    },
+    "pilon": {
+        "name": "Pilon",
+        "category": "error_correction",
+        "description": "Hybrid assembly polisher (long + short reads)",
+        "platform": "Java",
+        "technologies": ["Oxford Nanopore", "PacBio", "Bionano"],
+        "citation": "Walker et al., 2014",
+    },
+    
+    # Basecalling
+    "guppy": {
+        "name": "Guppy",
+        "category": "basecalling",
+        "description": "Oxford Nanopore basecaller",
+        "platform": "C++/CUDA",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Oxford Nanopore Technologies",
+    },
+    "bonito": {
+        "name": "Bonito",
+        "category": "basecalling",
+        "description": "Oxford Nanopore neural network basecaller",
+        "platform": "Python/PyTorch",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Oxford Nanopore Technologies",
+    },
+    "dorado": {
+        "name": "Dorado",
+        "category": "basecalling",
+        "description": "Oxford Nanopore high-accuracy basecaller",
+        "platform": "C++/CUDA",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Oxford Nanopore Technologies",
+    },
+    
+    # Base Modification Detection
+    "nanopolish": {
+        "name": "Nanopolish",
+        "category": "base_modification",
+        "description": "Methylation detection from nanopore signals",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Simpson et al., 2017",
+    },
+    "megatron": {
+        "name": "Megatron",
+        "category": "base_modification",
+        "description": "5mC detection at CpG resolution",
+        "platform": "Python/PyTorch",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Liu et al., 2022",
+    },
+    
+    # Isoform Detection & RNA
+    "flair": {
+        "name": "FLAIR",
+        "category": "isoform_detection",
+        "description": "Full-length alternative isoform analysis",
+        "platform": "Python",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Tang et al., 2020",
+    },
+    "stringtie": {
+        "name": "StringTie",
+        "category": "isoform_detection",
+        "description": "Transcript assembly and quantification",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Pertea et al., 2015",
+    },
+    "isoseq": {
+        "name": "IsoSeq",
+        "category": "isoform_detection",
+        "description": "PacBio isoform sequencing analysis",
+        "platform": "Python/C++",
+        "technologies": ["PacBio"],
+        "citation": "PacBio/SMRT Analysis",
+    },
+    
+    # Variant Detection
+    "deepvariant": {
+        "name": "DeepVariant",
+        "category": "variant_analysis",
+        "description": "Deep learning variant caller",
+        "platform": "Python/TensorFlow",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Poplin et al., 2018",
+    },
+    "clairvoyante": {
+        "name": "Clairvoyante",
+        "category": "variant_analysis",
+        "description": "Multi-technology variant caller",
+        "platform": "Python/PyTorch",
+        "technologies": ["Oxford Nanopore", "PacBio", "Bionano"],
+        "citation": "Luo et al., 2020",
+    },
+    "longshot": {
+        "name": "LongShot",
+        "category": "variant_analysis",
+        "description": "SNV and indel caller for long reads",
+        "platform": "Rust",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Edge & Coop, 2019",
+    },
+    
+    # Structural Variation
+    "sniffles": {
+        "name": "Sniffles",
+        "category": "structural_variation",
+        "description": "Structural variation caller for long reads",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Sedlazeck et al., 2018",
+    },
+    "cutesv": {
+        "name": "CuteSV",
+        "category": "structural_variation",
+        "description": "High-performance structural variant caller",
+        "platform": "Python/C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Jiang et al., 2020",
+    },
+    "pbsv": {
+        "name": "pbsv",
+        "category": "structural_variation",
+        "description": "PacBio structural variation caller",
+        "platform": "C++",
+        "technologies": ["PacBio"],
+        "citation": "Pacific Biosciences",
+    },
+    
+    # Metagenomics
+    "kraken2": {
+        "name": "Kraken2",
+        "category": "metagenomics",
+        "description": "Taxonomic classification using k-mers",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Wood et al., 2019",
+    },
+    "metamaps": {
+        "name": "MetaMaps",
+        "category": "metagenomics",
+        "description": "Long-read metagenomics classifier",
+        "platform": "C++",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Berlin et al., 2015",
+    },
+    
+    # Quality Control & QC
+    "nanostat": {
+        "name": "NanoStat",
+        "category": "quality_checking",
+        "description": "Statistics from Oxford Nanopore runs",
+        "platform": "Python",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Oxford Nanopore Technologies",
+    },
+    "poretools": {
+        "name": "PoreTools",
+        "category": "quality_checking",
+        "description": " toolkit for Oxford Nanopore reads",
+        "platform": "Python",
+        "technologies": ["Oxford Nanopore"],
+        "citation": "Loman & Quick, 2015",
+    },
+    "longreadqc": {
+        "name": "LongReadQC",
+        "category": "quality_checking",
+        "description": "Quality control for long reads",
+        "platform": "Python/R",
+        "technologies": ["Oxford Nanopore", "PacBio"],
+        "citation": "Long Read QC",
+    },
+}
+
 MULTIOMICS_TOOLS = {
     # Single-Cell Tools
     "scanpy": {
@@ -219,6 +484,7 @@ class ToolCapability:
 BROWN_MULTIOMICS_PIPELINE = {
     "description": "Multi-omics analysis for cancer metabolism drug discovery",
     "tools": list(MULTIOMICS_TOOLS.keys()),
+    "long_read_tools": list(LONG_READ_TOOLS.keys()),
     "cancer_applications": [
         "Tumor microenvironment analysis",
         "Metastatic niche identification",
@@ -231,7 +497,38 @@ BROWN_MULTIOMICS_PIPELINE = {
         "2. Spatial: SpatialCell → Tumor architecture",
         "3. MOFA: mofapy2 → Multi-omics integration",
         "4. Metagenomics: MetaPhlAn/HUMAnN → Microbiome-drug interactions",
+        "5. Long-Read: guppy/nanopolish → Isoform, methylation, SV detection",
     ]
+}
+
+# ─── Long-Read Cancer Applications ─────────────────────────────────────────────
+
+LONG_READ_CANCER_APPLICATIONS = {
+    "isoform_detection": {
+        "description": "Detect cancer-specific splice variants",
+        "tools": ["flair", "isoseq", "stringtie"],
+        "cancer_benefit": "Novel therapeutic targets through isoform switching",
+    },
+    "methylation_analysis": {
+        "description": "Epigenetic profiling from long-read sequencing",
+        "tools": ["nanopolish", "megatron"],
+        "cancer_benefit": "Epigenetic biomarkers, imprinting analysis",
+    },
+    "structural_variation": {
+        "description": "Detect large genomic alterations in cancer",
+        "tools": ["sniffles", "cutesv", "pbsv", "ngmlr"],
+        "cancer_benefit": "Fusion genes, copy number variations, translocations",
+    },
+    "metagenomics": {
+        "description": "Microbiome profiling with long reads",
+        "tools": ["kraken2", "metamaps"],
+        "cancer_benefit": "Microbiome-drug interactions, immunotherapy response",
+    },
+    "variant_calling": {
+        "description": "Somatic mutation detection",
+        "tools": ["deepvariant", "clairvoyante", "longshot"],
+        "cancer_benefit": "Driver mutations, resistance mechanisms",
+    },
 }
 
 def get_tools_by_type(tool_type: str) -> List[Dict]:
