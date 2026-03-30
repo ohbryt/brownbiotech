@@ -1,7 +1,11 @@
-# Environment
+# Environment - CRITICAL
 .env
 .env.local
 .env.production
+*.pem
+*.key
+credentials.json
+secrets.json
 
 # Vercel
 .vercel

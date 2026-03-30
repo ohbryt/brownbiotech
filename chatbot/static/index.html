@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brown Biotech Research Agent</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*; img-src 'self' data:;">
     <meta name="description" content="AI-powered pharmaceutical & biotech research analysis">
+    <title>Brown Biotech Research Agent</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -63,6 +64,7 @@
                 class="query-input" 
                 id="query-input" 
                 placeholder="예: GLP-1 작용제 파이프라인 분석해줘"
+                maxlength="1000"
                 onkeypress="handleKeyPress(event)"
             >
             <button class="analyze-btn" id="analyze-btn" onclick="sendQuery()">
@@ -98,6 +100,7 @@
         // ─── Configuration ───
         const API_BASE = '/api';  // For local dev, use ''
         let queryCount = 0;
+        const MAX_QUERY_LENGTH = 1000;
 
         // ─── Initialize ───
         document.addEventListener('DOMContentLoaded', () => {
@@ -105,10 +108,20 @@
             checkAPIHealth();
         });
 
+        // ─── Security: Escape HTML to prevent XSS ───
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         // ─── Check API Health ───
         async function checkAPIHealth() {
             try {
-                const response = await fetch(`${API_BASE}/health`);
+                const response = await fetch(`${API_BASE}/health`, {
+                    method: 'GET',
+                    credentials: 'omit'
+                });
                 if (response.ok) {
                     document.getElementById('api-status').textContent = 'Online';
                     document.getElementById('api-status').style.color = '#2ECC71';
@@ -129,7 +142,8 @@
 
         // ─── Use Example ───
         function useExample(query, type) {
-            document.getElementById('query-input').value = query;
+            const input = document.getElementById('query-input');
+            input.value = query;
             sendQuery();
         }
 
@@ -138,16 +152,22 @@
             const input = document.getElementById('query-input');
             const btn = document.getElementById('analyze-btn');
             const chatBox = document.getElementById('chat-box');
-            const query = input.value.trim();
+            let query = input.value.trim();
             
             if (!query) return;
+
+            // Security: Validate input length
+            if (query.length > MAX_QUERY_LENGTH) {
+                query = query.substring(0, MAX_QUERY_LENGTH);
+                showError('Query truncated to ' + MAX_QUERY_LENGTH + ' characters.');
+            }
 
             // Disable button
             btn.disabled = true;
             btn.textContent = '⏳ Analyzing...';
 
-            // Add user message
-            addMessage('user', query);
+            // Add user message (safely)
+            addMessage('user', escapeHtml(query));
             input.value = '';
 
             // Add loading indicator
@@ -158,7 +178,8 @@
                 const response = await fetch(`${API_BASE}/query`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query, model: 'minimax/minimax-m2.7' })
+                    body: JSON.stringify({ query: query, model: 'minimax/minimax-m2.7' }),
+                    credentials: 'omit'
                 });
 
                 if (!response.ok) {
@@ -170,7 +191,7 @@
                 // Remove loading
                 removeLoading(loadingId);
 
-                // Add assistant response
+                // Add assistant response (safely)
                 addMessage('assistant', data.content, {
                     sources: data.sources,
                     intent: data.intent_type,
@@ -186,7 +207,7 @@
                 removeLoading(loadingId);
                 
                 // Show error
-                showError(`API 연결 실패: ${error.message}. 로컬 모드로 전환합니다.`);
+                showError('API 연결 실패. 로컬 모드로 전환합니다.');
                 
                 // Fallback to local processing
                 processLocally(query);
@@ -210,9 +231,9 @@
                 response = `## GLP-1 작용제 파이프라인 분석
 
 ### FDA 승인 약물
-- **Semaglutide** (Novo Nordisk) — Ozempic®, Wegovy®
-- **Tirzepatide** (Eli Lilly) — Mounjaro® (Dual GIP/GLP-1)
-- **Liraglutide** (Novo Nordisk) — Saxenda®
+- **Semaglutide** (Novo Nordisk) — Ozempic, Wegovy
+- **Tirzepatide** (Eli Lilly) — Mounjaro (Dual GIP/GLP-1)
+- **Liraglutide** (Novo Nordisk) — Saxenda
 
 ### Phase 3 개발 candidates
 - **CagriSema** (Novo Nordisk) — Semaglutide + Cagrilintide
@@ -220,34 +241,35 @@
 - **Efo-cipeg** (Hanmi) — 주 1회 GLP-1
 
 ### 시장 전망
-- 글로벌 비만치료제 시장: **$48억** (2024) → **$100억+** (2030)
+- 글로벌 비만치료제 시장: $48억 (2024) → $100억+ (2030)
 - CAGR: 31.5%
 
 ### Business Implications
-✅_VALIDATED Market — 경쟁 심화 중
-🔬 차세대 candidates: dual/triple mechanisms 주목`;
+- VALIDATED Market — 경쟁 심화 중
+- 차세대 candidates: dual/triple mechanisms 주목`;
             } else if (lowerQuery.includes('tgf') || lowerQuery.includes('피부') || lowerQuery.includes('skin') || lowerQuery.includes('aging')) {
-                response = `## TGF-β & 피부노화 분석
+                response = `## TGF-beta & 피부노화 분석
 
 ### MERFISH 스킨 아틀라스 데이터 기반
 
 **주요 노화 관련 유전자:**
+
 | 유전자 | Log2FC | 방향 | 기능 |
 |--------|---------|------|------|
-| TGFB2 | -13.79 | ↓노화 | TGF-β 신호전달 |
-| PDGFA | -14.31 | ↓노화 | 섬유아세포 증식 |
-| FGF7 | -12.63 | ↓노화 | 상피세포 성장 |
-| MMP1 | +3.20 | ↑노화 | 콜라겐 분해 |
+| TGFB2 | -13.79 | Down | TGF-beta 신호전달 |
+| PDGFA | -14.31 | Down | 섬유아세포 증식 |
+| FGF7 | -12.63 | Down | 상피세포 성장 |
+| MMP1 | +3.20 | Up | 콜라겐 분해 |
 
 ### 기전 해석
-1. **TGF-β↓** → 섬유아세포 기능저하 → 콜라겐 합성↓
-2. **MMP1↑** → 콜라겐 분해↑ → 피부탄력↓
-3. **보상기전**으로 COL6A1↑ (상쇄시도)
+1. **TGF-beta down** → 섬유아세포 기능저하 → 콜라겐 합성 down
+2. **MMP1 up** → 콜라겐 분해 up → 피부탄력 down
+3. **보상기전**으로 COL6A1 up (상쇄시도)
 
 ### 권장 타겟
 - **PDGFA agonists** — 섬유아세포 활성화
 - **MMP inhibitors** — 콜라겐 분해 방지
-- **TGF-β modulators** — 노화 신호 교정`;
+- **TGF-beta modulators** — 노화 신호 교정`;
             } else if (lowerQuery.includes('market') || lowerQuery.includes('시장')) {
                 response = `## 안티에이징 시장 분석
 
@@ -266,15 +288,15 @@
 3. **의료미용** — 20% CAGR 15%
 
 ### 트렌드
-- 📈 Growth factor 제품 확산
-- 📈 AI 개인화 스킨케어
-- 📈 마이크로바이옴 강조
-- 📈 클린 뷰티
+- Growth factor 제품 확산
+- AI 개인화 스킨케어
+- 마이크로바이옴 강조
+- 클린 뷰티
 
 ### 진입 기회
 한국시장의 높은 기술수준 + K-뷰티 브랜드 인지도 → 프리미엄 제품 적합`;
             } else {
-                response = `## 연구 분석 결과: "${query}"
+                response = `## 연구 분석 결과
 
 ### 분석 완료
 귀하의 질문에 대한 preliminary 분석을 완료했습니다.
@@ -285,10 +307,10 @@
 3. Brown Biotech 웹사이트에서 Contact Us
 
 ### 현재 가능한 분석
-- 💊 약물 파이프라인 (GLP-1, FXR, PPAR 등)
-- 📚 문헌调研 (특정 질환/기전)
-- 📈 시장 분석 (안티에이징, 코스메슈티컬)
-- 🧬 단일세포 데이터 분석
+- 약물 파이프라인 (GLP-1, FXR, PPAR 등)
+- 문헌调研 (특정 질환/기전)
+- 시장 분석 (안티에이징, 코스메슈티컬)
+- 단일세포 데이터 분석
 
 ### Contact
 Brown Biotech Co., Ltd.
@@ -310,39 +332,33 @@ Dr. Chang-Myung Oh (PhD, KAIST)`;
             const chatBox = document.getElementById('chat-box');
             
             const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-message ${role === 'user' ? 'user-message' : 'assistant-message'}`;
+            messageDiv.className = 'chat-message ' + (role === 'user' ? 'user-message' : 'assistant-message');
             
             const label = role === 'user' ? 'You' : 'Brown Biotech Agent';
             
-            let html = `<div class="message-label">${label}`;
-            if (meta.intent) {
-                html += `<span class="intent-badge">${meta.intent}</span>`;
-            }
-            html += '</div>';
-            html += `<div class="message-content">${formatContent(content)}</div>`;
+            // Build content safely
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'message-label';
+            labelDiv.textContent = label;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.textContent = content;
+
+            messageDiv.appendChild(labelDiv);
+            messageDiv.appendChild(contentDiv);
             
             if (meta.sources && role === 'assistant') {
-                html += `<div class="sources-box">📚 Sources: ${meta.sources}</div>`;
+                const sourcesDiv = document.createElement('div');
+                sourcesDiv.className = 'sources-box';
+                sourcesDiv.textContent = 'Sources: ' + meta.sources;
+                messageDiv.appendChild(sourcesDiv);
             }
             
-            messageDiv.innerHTML = html;
             chatBox.appendChild(messageDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
             
             return messageDiv;
-        }
-
-        // ─── Format Content ───
-        function formatContent(content) {
-            // Convert markdown-style formatting
-            let formatted = content
-                .replace(/## (.+)/g, '<strong style="font-size: 1.1em;">$1</strong>')
-                .replace(/### (.+)/g, '<strong>$1</strong>')
-                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\n\n/g, '</p><p style="margin-top: 12px;">')
-                .replace(/\n/g, '<br>');
-            
-            return `<p>${formatted}</p>`;
         }
 
         // ─── Loading Indicator ───
@@ -353,15 +369,17 @@ Dr. Chang-Myung Oh (PhD, KAIST)`;
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'chat-message assistant-message';
             loadingDiv.id = id;
-            loadingDiv.innerHTML = `
-                <div class="message-label">Brown Biotech Agent</div>
-                <div class="loading">
-                    <div class="loading-dot"></div>
-                    <div class="loading-dot"></div>
-                    <div class="loading-dot"></div>
-                    <span>AI 분석 중...</span>
-                </div>
-            `;
+            
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'message-label';
+            labelDiv.textContent = 'Brown Biotech Agent';
+            
+            const loadingDivInner = document.createElement('div');
+            loadingDivInner.className = 'loading';
+            loadingDivInner.innerHTML = '<div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div><span>AI 분석 중...</span>';
+            
+            loadingDiv.appendChild(labelDiv);
+            loadingDiv.appendChild(loadingDivInner);
             
             chatBox.appendChild(loadingDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
